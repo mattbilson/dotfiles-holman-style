@@ -9,10 +9,22 @@
 if test ! $(which brew)
 then
   echo "  Installing Homebrew for you."
-  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" > /tmp/homebrew-install.log
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
 fi
 
-# Install homebrew packages
-brew install grc coreutils spark
+
+# Make sure we’re using the latest Homebrew
+brew update
+
+# Upgrade any already-installed formulae
+brew upgrade
+
+# Install other useful binaries
+brew install git
+brew install node # This installs `npm` too using the recommended installation method
+brew install tree
+
+# Remove outdated versions from the cellar
+brew cleanup
 
 exit 0

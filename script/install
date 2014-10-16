@@ -8,3 +8,16 @@ cd "$(dirname $0)"/..
 
 # find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+
+
+
+
+
+###	GENERAL
+
+# https://github.com/thebitguru/play-button-itunes-patch
+# disable itunes opening on media keys
+# cd ~/code
+# git clone https://github.com/thebitguru/play-button-itunes-patch
+# sudo open play-button-itunes-patch/Patch.command
+# sudo rm -rf play-button-itunes-patch
