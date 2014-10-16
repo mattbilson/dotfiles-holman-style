@@ -1,57 +1,46 @@
+chsh -s /bin/zsh
+
 # up to you (me) if you want to run this as a file or copy paste at your leisure
+echo "**\t Installing oh-my-zsh"
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
 
 # https://github.com/jamiew/git-friendly
 # the `push` command which copies the github compare URL to my clipboard is heaven
-bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
+echo "**\t Installing git-friendly"
+rm -rf ~/Development/tools/git-friendly
+git clone git://github.com/jamiew/git-friendly.git ~/Development/tools/git-friendly
+export PATH=~/Development/tools/git-friendly:$PATH
 
 # https://rvm.io
 # rvm for the rubiess
-curl -L https://get.rvm.io | bash -s stable --ruby
+curl -L https://get.rvm.io | bash -s stable --ruby --auto-dotfiles
+#add to .zshrc
+#echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.' >> ~/.zshrc
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+source ~/.rvm/scripts/rvm
 
-# https://github.com/isaacs/nave
-# needs npm, obviously.
-# TODO: I think i'd rather curl down the nave.sh, symlink it into /bin and use that for initial node install.
-npm install -g nave
 
 
 # homebrew!
-# you need the code CLI tools YOU FOOL.
-
-# google machines are funny so i have to do this. everyone else should use the regular thang
-mkdir $HOME/.homebrew && curl -L https://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C $HOME/.homebrew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/homebrew/go/install)"
 export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 
 
 # https://github.com/rupa/z
 # z, oh how i love you
-cd ~/code
-git clone https://github.com/rupa/z.git
-chmod +x ~/code/z/z.sh
+git clone https://github.com/rupa/z.git ~/Development/tools/z
+chmod +x ~/Development/tools/z/z.sh
 # also consider moving over your current .z file if possible. it's painful to rebuild :)
 
-# z binary is already referenced from .bash_profile
 
 
 # https://github.com/thebitguru/play-button-itunes-patch
 # disable itunes opening on media keys
-cd ~/code
+cd ~/Development/tools
 git clone https://github.com/thebitguru/play-button-itunes-patch
 
-
-# my magic photobooth symlink -> dropbox. I love it.
-# first move Photo Booth folder out of Pictures
-# then start Photo Booth. It'll ask where to put the library.
-# put it in Dropbox/public
-
-# now you can record photobooth videos quickly and they upload to dropbox DURING RECORDING
-# then you grab public URL and send off your video message in a heartbeat.
-
-
-# for the c alias (syntax highlighted cat)
-sudo easy_install Pygments
-
-
-# chrome canary as default
-# on a mac you can set chrome canary as your default inside of Safari preferences :)
-
+# install NVM
+curl https://raw.githubusercontent.com/creationix/nvm/v0.17.2/install.sh | bash
+nvm install 0.10.32
+#nvm use stable
