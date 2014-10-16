@@ -1,0 +1,19 @@
+# Install native apps
+# Usage: `brew bundle Caskfile`
+
+install caskroom/cask/brew-cask
+tap caskroom/versions
+
+# daily
+cask install dropbox 				2> /dev/null
+
+
+# dev
+cask install iterm2 					2> /dev/null
+cask install sublime-text 				2> /dev/null
+
+# browsers
+cask install google-chrome-canary 			2> /dev/null
+
+# less often
+cask install vlc 							2> /dev/null
